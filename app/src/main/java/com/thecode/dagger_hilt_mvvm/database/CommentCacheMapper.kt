@@ -36,6 +36,11 @@ constructor() : EntityMapper<CommentCacheEntity, Comment> {
         return entities.map { mapFromEntity(it) }
     }
 
+    fun mapToEntityList(entities: List<Comment>): List<CommentCacheEntity> {
+        return entities.map { mapToEntity(it) }
+    }
+
+
 }
 
 

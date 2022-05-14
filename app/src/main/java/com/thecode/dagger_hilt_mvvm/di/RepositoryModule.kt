@@ -2,6 +2,7 @@ package com.thecode.dagger_hilt_mvvm.di
 
 //import com.thecode.dagger_hilt_mvvm.database.BlogDao
 //import com.thecode.dagger_hilt_mvvm.database.CacheMapper
+import com.thecode.dagger_hilt_mvvm.database.CommentCacheMapper
 import com.thecode.dagger_hilt_mvvm.database.PostCacheMapper
 import com.thecode.dagger_hilt_mvvm.database.PostDao
 import com.thecode.dagger_hilt_mvvm.database.UserCacheMapper
@@ -10,6 +11,7 @@ import com.thecode.dagger_hilt_mvvm.database.UserCacheMapper
 import com.thecode.dagger_hilt_mvvm.network.PostApi
 import com.thecode.dagger_hilt_mvvm.network.PostMapper
 import com.thecode.dagger_hilt_mvvm.network.UserMapper
+import com.thecode.dagger_hilt_mvvm.network.comment.CommentMapper
 
 import com.thecode.dagger_hilt_mvvm.repository.MainRepository
 import dagger.Module
@@ -29,10 +31,12 @@ object RepositoryModule {
         postApi: PostApi,
         postCacheMapper: PostCacheMapper,
         postMapper: PostMapper,
+        commentCacheMapper: CommentCacheMapper,
+        commentMapper: CommentMapper,
         userCacheMapper: UserCacheMapper,
         userMapper: UserMapper
 
     ): MainRepository {
-        return MainRepository(postDao, postApi, postCacheMapper, postMapper, userCacheMapper, userMapper)
+        return MainRepository(postDao, postApi, postCacheMapper, postMapper, commentCacheMapper, commentMapper, userCacheMapper, userMapper)
     }
 }

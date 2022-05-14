@@ -24,8 +24,6 @@ object DataModule {
             context, PostDatabase::class.java,
             "post_db"
         )        .build()
-
-
     }
 
     @Singleton
@@ -33,4 +31,6 @@ object DataModule {
     fun provideBlogDAO(postDatabase: PostDatabase): PostDao {
         return postDatabase.postDao()
     }
+
+
 }

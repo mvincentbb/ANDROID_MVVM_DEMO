@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName
 
 data class CommentObjectResponse(
 
-    @SerializedName("pk")
+    @SerializedName("id")
     @Expose
     val id: Int,
     @SerializedName("postId")

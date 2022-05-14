@@ -1,7 +1,9 @@
 package com.thecode.dagger_hilt_mvvm.network.comment
 
 
+    import com.thecode.dagger_hilt_mvvm.database.PostCacheEntity
     import com.thecode.dagger_hilt_mvvm.model.Comment
+    import com.thecode.dagger_hilt_mvvm.model.Post
     import com.thecode.dagger_hilt_mvvm.util.EntityMapper
     import javax.inject.Inject
 
@@ -33,6 +35,7 @@ constructor() : EntityMapper<CommentObjectResponse, Comment> {
      fun mapFromEntityList(entities: List<CommentObjectResponse>): List<Comment> {
         return entities.map { mapFromEntity(it) }
     }
+
 
 }
 
