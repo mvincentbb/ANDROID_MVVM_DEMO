@@ -67,7 +67,7 @@ constructor(
 
 
 
-    suspend fun getPost(): Flow<DataState<List<Detail>>> = flow {
+    suspend fun getDetail(postId : Int ): Flow<DataState<List<Detail>>> = flow {
         emit(DataState.Loading)
         delay(1000)
         try {
@@ -82,7 +82,7 @@ constructor(
                 updateCommentCache(networkComments)
                 updateUserCache(networkUsers)
                 val details = postDao.getAllDetails()
-                Log.e("DETAIL FROM DATABASE",
+                Log.e("DETAIL",
                     "$details")
                 emit(DataState.Success(details))
 

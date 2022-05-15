@@ -131,11 +131,11 @@ constructor(
                /* for (user in users) {
                     postDao.insertUser(userCacheMapper.mapToEntity(user))
                 }*/
-                val userCachedBlogs = postDao.getAllUsers()
-//                val details = postDao.getAllDetails()
-              /*  Log.e("USER FROM DATABASE",
+//                val userCachedBlogs = postDao.getAllUsers()
+                val details = postDao.getAllDetails()
+              /*Log.e("USER FROM DATABASE",
                     "${userCacheMapper.mapFromEntityList(userCachedBlogs)}")*/
-//              Log.e("details","$details")
+              Log.e("details","$details")
             }else{
                 val userCachedBlogs = postDao.getAllUsers()
                 userCacheMapper.mapFromEntityList(userCachedBlogs)

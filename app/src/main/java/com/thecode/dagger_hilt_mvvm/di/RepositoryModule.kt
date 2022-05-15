@@ -6,12 +6,14 @@ import com.thecode.dagger_hilt_mvvm.database.CommentCacheMapper
 import com.thecode.dagger_hilt_mvvm.database.PostCacheMapper
 import com.thecode.dagger_hilt_mvvm.database.PostDao
 import com.thecode.dagger_hilt_mvvm.database.UserCacheMapper
+import com.thecode.dagger_hilt_mvvm.model.Detail
 //import com.thecode.dagger_hilt_mvvm.network.BlogApi
 //import com.thecode.dagger_hilt_mvvm.network.BlogMapper
 import com.thecode.dagger_hilt_mvvm.network.PostApi
 import com.thecode.dagger_hilt_mvvm.network.PostMapper
 import com.thecode.dagger_hilt_mvvm.network.UserMapper
 import com.thecode.dagger_hilt_mvvm.network.comment.CommentMapper
+import com.thecode.dagger_hilt_mvvm.repository.DetailRepository
 
 import com.thecode.dagger_hilt_mvvm.repository.MainRepository
 import dagger.Module
@@ -39,4 +41,19 @@ object RepositoryModule {
     ): MainRepository {
         return MainRepository(postDao, postApi, postCacheMapper, postMapper, commentCacheMapper, commentMapper, userCacheMapper, userMapper)
     }
+
+    @Singleton
+    @Provides
+    fun provideDetailRepository(
+        postDao: PostDao,
+        postApi: PostApi,
+        commentCacheMapper: CommentCacheMapper,
+        commentMapper: CommentMapper,
+        userCacheMapper: UserCacheMapper,
+        userMapper: UserMapper
+
+    ): DetailRepository  {
+        return DetailRepository(postDao, postApi, commentCacheMapper, commentMapper, userCacheMapper, userMapper)
+    }
+
 }

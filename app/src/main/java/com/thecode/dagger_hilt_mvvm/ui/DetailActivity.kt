@@ -1,14 +1,13 @@
 package com.thecode.dagger_hilt_mvvm.ui
 
-import android.content.Intent
 import android.os.Bundle
-import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.thecode.dagger_hilt_mvvm.R
+import com.thecode.dagger_hilt_mvvm.model.Detail
 
 import com.thecode.dagger_hilt_mvvm.model.Post
 import com.thecode.dagger_hilt_mvvm.util.DataState
@@ -18,19 +17,19 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 
 @ExperimentalCoroutinesApi
 @AndroidEntryPoint
-class MainActivity : AppCompatActivity(), PostAdapter.PostItemListener {
-    private val viewModel: MainViewModel by viewModels()
-    private lateinit var adapter: PostAdapter
+class DetailActivity : AppCompatActivity(),  {
+    private val viewModel: DetailViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        setupRecyclerView()
+        setContentView(R.layout.activity_detail)
+        val posts
+
         subscribeObservers()
-        viewModel.setStateEvent(MainStateEvent.GetPostEvents)
+        viewModel.setStateEvent(DetailStateEvent.GetDetailEvents)
 
         swipeRefreshLayout.setOnRefreshListener {
-            viewModel.setStateEvent(MainStateEvent.GetPostEvents)
+            viewModel.setStateEvent(DetailStateEvent.GetDetailEvents)
         }
 
     }
@@ -38,7 +37,7 @@ class MainActivity : AppCompatActivity(), PostAdapter.PostItemListener {
     private fun subscribeObservers() {
         viewModel.dataState.observe(this, Observer { dataState ->
             when (dataState) {
-                is DataState.Success<List<Post>> -> {
+                is DataState.Success<List<Detail>> -> {
                     displayLoading(false)
                     populateRecyclerView(dataState.data)
                 }
@@ -70,7 +69,7 @@ class MainActivity : AppCompatActivity(), PostAdapter.PostItemListener {
         if (posts.isNotEmpty()) adapter.setItems(ArrayList(posts))
     }
 
-    private fun setupRecyclerView() {
+/*    private fun setupRecyclerView() {
         adapter = PostAdapter(this)
         blog_recyclerview.layoutManager = LinearLayoutManager(this)
         blog_recyclerview.adapter = adapter
@@ -78,15 +77,6 @@ class MainActivity : AppCompatActivity(), PostAdapter.PostItemListener {
 
     override fun onClickedBlog(postId: CharSequence) {
         Toast.makeText(this, postId, Toast.LENGTH_SHORT).show()
-
-    }
-
-    fun sendDetail(view: View, postId: CharSequence){
-        val intent = Intent(this, DetailActivity::class.java).apply {
-            putExtra("postId",postId)
-        }
-        startActivity(intent)
-    }
-
+    }*/
 
 }
